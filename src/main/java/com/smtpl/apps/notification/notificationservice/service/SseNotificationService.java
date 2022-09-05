@@ -33,6 +33,7 @@ public class SseNotificationService implements NotificationService {
             try {
                 log.info("Sending event: {} for member: {}", event, userId);
                 sseEmitter.send(eventMapper.toSseEventBuilder(event));
+
             } catch (IOException | IllegalStateException e) {
                 log.info("Error while sending event: {} for member: {} - exception: {}", event, userId, e);
                 emitterRepository.remove(userId);

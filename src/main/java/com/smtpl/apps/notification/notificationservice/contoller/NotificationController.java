@@ -18,8 +18,8 @@ public class NotificationController {
     @Autowired
     private PushMessagePublisher pushMessagePublisher;
 
-    @GetMapping("/subscription")
-    public SseEmitter subsribe(@RequestHeader(name = USER_ID) String memberId) {
+    @GetMapping("/subscription/{userId}")
+    public SseEmitter subsribe(@PathVariable(value ="userId") String memberId) {
         log.info("subscribed member with id {}", memberId);
         return emitterService.createEmitter(memberId);
     }
