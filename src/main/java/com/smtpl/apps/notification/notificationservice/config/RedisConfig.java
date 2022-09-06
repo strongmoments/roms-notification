@@ -35,6 +35,13 @@ public class RedisConfig {
     }
 
     @Bean
+    public RedisTemplate<String, Object> redisTemplate2(){
+        RedisTemplate<String, Object> empTemplate = new RedisTemplate<>();
+        empTemplate.setConnectionFactory(jedisConnectionFactory());
+        return empTemplate;
+    }
+
+    @Bean
     MessageListenerAdapter messageListener() {
         return new MessageListenerAdapter(pushMessageSubscriber);
     }

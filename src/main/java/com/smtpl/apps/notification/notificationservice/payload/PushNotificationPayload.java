@@ -15,5 +15,6 @@ public class PushNotificationPayload {
     private String from;
     private String message;
     private String type;
+    private String eventId;
     private Map<String, Object> body;
 }

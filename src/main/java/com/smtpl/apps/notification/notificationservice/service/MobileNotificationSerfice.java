@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 @Service
 @Primary
@@ -20,15 +21,14 @@ import java.util.Map;
 public class MobileNotificationSerfice implements MobileNotification {
 
     @Override
-    public void sendNotification(String userId, PushNotificationPayload event) {
+    public void sendNotification(String userId, PushNotificationPayload event, String eventId) {
 
         try {
             String androidFcmKey="AAAA9NVCo9M:APA91bGg33I9LobWDncfvYtUdG-ruRA0GnZNq6eDL8-4w5BIsyuqrMzkE7YtCeff7bD1xsiJf2kIqc0ZBa-m3U85iyo2KO0WQGmd3v6LWdkH00G3G6cVWaASDEf-NxCiOimAqqK1x-Xt";
             String androidFcmUrl="https://fcm.googleapis.com/fcm/send";
 
             ArrayList<String>  deviceTokenArray = new ArrayList<String>();
-            deviceTokenArray.add("c8-qfRdGSgeZsGjXVZh42O:APA91bE-pK4XTcL1DhgYIyljGCSk-Gw9gwQgrC3bSSeWmHp2Jmp5McCKfba1n1tz3XY6HEjU7mqhsE259mUNk1lW6AxSW30ka00lhSW71gebsrKTDg0rBtkfU-Z_TmCLFIJ-CvYHhUfa");
-            //String deviceToken = "c8-qfRdGSgeZsGjXVZh42O:APA91bE-pK4XTcL1DhgYIyljGCSk-Gw9gwQgrC3bSSeWmHp2Jmp5McCKfba1n1tz3XY6HEjU7mqhsE259mUNk1lW6AxSW30ka00lhSW71gebsrKTDg0rBtkfU-Z_TmCLFIJ-CvYHhUfa";
+            deviceTokenArray = (ArrayList<String>) event.getBody().get("devices");
 
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders httpHeaders = new HttpHeaders();
@@ -42,6 +42,7 @@ public class MobileNotificationSerfice implements MobileNotification {
             msg.put("title", event.getMessage());
             msg.put("body", event.getBody());
             msg.put("notificationType", event.getType());
+            msg.put("eventId", eventId);
 
             json.put("data", msg);
             json.put("registration_ids", deviceTokenArray);

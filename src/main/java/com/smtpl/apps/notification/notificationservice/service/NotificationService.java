@@ -5,5 +5,5 @@ import com.smtpl.apps.notification.notificationservice.payload.PushNotificationP
 
 public interface NotificationService {
 
-    void sendNotification(String userId, PushNotificationPayload event);
+    void sendNotification(String userId, PushNotificationPayload event,String eventId);
 }

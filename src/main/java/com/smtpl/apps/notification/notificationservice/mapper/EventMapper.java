@@ -13,9 +13,10 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @AllArgsConstructor
 public class EventMapper {
 
-    public SseEmitter.SseEventBuilder toSseEventBuilder(PushNotificationPayload event) {
+    public SseEmitter.SseEventBuilder toSseEventBuilder(PushNotificationPayload event,String eventId) {
         return SseEmitter.event()
-                .id(RandomStringUtils.randomAlphanumeric(12))
+
+                .id(eventId)
                 .name(event.getType())
                 .data(event.getBody());
     }
