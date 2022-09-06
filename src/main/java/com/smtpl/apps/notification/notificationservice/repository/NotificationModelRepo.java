@@ -23,15 +23,17 @@ public class NotificationModelRepo implements NotificationModelService {
     private final String hashReference= "notification";
 
     @Resource(name="redisTemplate2")          // 'redisTemplate' is defined as a Bean in AppConfig.java
-    private HashOperations<String, String, Object> hashOperations;
+    private HashOperations<String, String, Map<String, Object>> hashOperations;
 
 
     @Override
     public void save(String userId, PushNotificationPayload event, String eventId) throws JsonProcessingException {
-        List<Object> list = new ArrayList<Object>();
-           list.add(hashOperations.get(hashReference,userId));
-        list.add(event);
-        hashOperations.put(hashReference, userId,list);
+        Map<String,Object> obj = new HashMap<>();
+
+      obj =  hashOperations.get(hashReference,userId);
+        obj.put(eventId,event);
+
+        hashOperations.put(hashReference, userId,obj);
 
     }
 
@@ -43,15 +45,12 @@ public class NotificationModelRepo implements NotificationModelService {
 
     @Override
     public void deleteNotification(String userId, String eventId) {
-     List<Object> newList = new ArrayList<Object>();
-        List<Object> objs= (List<Object>) hashOperations.get(hashReference,userId);
-        for(Object obj : objs){
-            PushNotificationPayload payload =(PushNotificationPayload) obj;
-            if(!payload.getEventId().equalsIgnoreCase(eventId)){
-                newList.add(obj);
-            }
-        }
-        hashOperations.put(hashReference, userId,newList);
+        Map<String,Object> obj = new HashMap<>();
+
+        obj =  hashOperations.get(hashReference,userId);
+        obj.remove(eventId);
+        hashOperations.put(hashReference, userId,obj);
+
 
 
     }

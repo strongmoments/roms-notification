@@ -17,7 +17,7 @@ public class EventMapper {
         return SseEmitter.event()
 
                 .id(eventId)
-                .name(event.getType())
+                .name("message")
                 .data(event.getBody());
     }
 }

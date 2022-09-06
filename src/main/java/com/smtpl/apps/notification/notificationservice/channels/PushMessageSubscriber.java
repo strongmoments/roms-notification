@@ -38,6 +38,7 @@ public class PushMessageSubscriber implements MessageListener{
             var notificationPayload = objectMapper.readValue(message.toString(), PushNotificationPayload.class);
             String notificationEventId  = RandomStringUtils.randomAlphanumeric(12);
             notificationPayload.setEventId(notificationEventId);
+            notificationPayload.getBody().put("type",notificationPayload.getMessage());
 //            List<Object> alldevice = (List<Object>) notificationPayload.getBody().get("devices");
 
             notificationService.sendNotification(notificationPayload.getUsername(),notificationPayload, notificationEventId);
