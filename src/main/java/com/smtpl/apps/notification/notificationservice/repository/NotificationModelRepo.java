@@ -31,6 +31,9 @@ public class NotificationModelRepo implements NotificationModelService {
         Map<String,Object> obj = new HashMap<>();
 
       obj =  hashOperations.get(hashReference,userId);
+      if(obj == null){
+          obj = new HashMap<>();
+      }
         obj.put(eventId,event);
 
         hashOperations.put(hashReference, userId,obj);
@@ -48,10 +51,9 @@ public class NotificationModelRepo implements NotificationModelService {
         Map<String,Object> obj = new HashMap<>();
 
         obj =  hashOperations.get(hashReference,userId);
-        obj.remove(eventId);
-        hashOperations.put(hashReference, userId,obj);
-
-
-
+        if(obj != null){
+            obj.remove(eventId);
+            hashOperations.put(hashReference, userId,obj);
+        }
     }
 }
