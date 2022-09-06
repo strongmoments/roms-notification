@@ -35,8 +35,8 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisTemplate2(){
-        RedisTemplate<String, Object> empTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, PushNotificationPayload> redisTemplate2(){
+        RedisTemplate<String, PushNotificationPayload> empTemplate = new RedisTemplate<>();
         empTemplate.setConnectionFactory(jedisConnectionFactory());
         return empTemplate;
     }

@@ -1,6 +1,8 @@
 package com.smtpl.apps.notification.notificationservice.channels;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
 import com.smtpl.apps.notification.notificationservice.payload.PushNotificationPayload;
 
 import com.smtpl.apps.notification.notificationservice.service.MobileNotification;
@@ -32,6 +34,7 @@ public class PushMessageSubscriber implements MessageListener{
 
     public void onMessage(final Message message, final byte[] pattern) {
         try {
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             var notificationPayload = objectMapper.readValue(message.toString(), PushNotificationPayload.class);
             String notificationEventId  = RandomStringUtils.randomAlphanumeric(12);
             notificationPayload.setEventId(notificationEventId);

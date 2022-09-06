@@ -1,4 +1,5 @@
 package com.smtpl.apps.notification.notificationservice.contoller;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.smtpl.apps.notification.notificationservice.payload.PushNotificationPayload;
 import com.smtpl.apps.notification.notificationservice.channels.PushMessagePublisher;
 import com.smtpl.apps.notification.notificationservice.service.EmitterService2;
@@ -39,8 +40,8 @@ public class NotificationController {
     }
 
     @PostMapping("/loadNotification")
-    public ResponseEntity<?> load(@RequestBody PushNotificationPayload request) {
-        Map<String,Object> response = notificationModelService.loadNotification(request.getUsername());
+    public ResponseEntity<?> load(@RequestBody PushNotificationPayload request) throws JsonProcessingException {
+        String response = notificationModelService.loadNotification(request.getUsername());
         log.info("notification loaded for id {}", request.getUsername());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
