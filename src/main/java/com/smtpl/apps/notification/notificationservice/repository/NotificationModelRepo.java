@@ -42,8 +42,13 @@ public class NotificationModelRepo implements NotificationModelService {
 
     public String loadNotification(String userId) throws JsonProcessingException {
         ObjectMapper obj = new ObjectMapper();
+        Map<String,Object> mapObj = new HashMap<>();
+        mapObj = hashOperations.get(hashReference,userId);
+        if(mapObj == null){
+            return "";
+        }
 
-        return obj.writeValueAsString(hashOperations.get(hashReference,userId));
+        return obj.writeValueAsString(mapObj);
     }
 
     @Override
