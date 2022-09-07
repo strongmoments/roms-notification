@@ -40,7 +40,8 @@ public class MobileNotificationSerfice implements MobileNotification {
                 Map<String, Object> msg = new HashMap<>();
                 Map<String, Object> json = new HashMap<>();
 
-
+                event.getBody().remove("profileImage");
+                event.getBody().put("profileImage","");
 
                 msg.put("title", event.getMessage());
                 msg.put("body", event.getBody());
