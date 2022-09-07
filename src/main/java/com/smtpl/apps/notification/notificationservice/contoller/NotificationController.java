@@ -42,6 +42,9 @@ public class NotificationController {
     @PostMapping("/loadNotification")
     public ResponseEntity<?> load(@RequestBody PushNotificationPayload request) throws JsonProcessingException {
         String response = notificationModelService.loadNotification(request.getUsername());
+        if(response.isEmpty()){
+            response = "empty";
+        }
         log.info("notification loaded for id {}", request.getUsername());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

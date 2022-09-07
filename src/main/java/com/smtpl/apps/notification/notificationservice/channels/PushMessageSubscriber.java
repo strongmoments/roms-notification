@@ -36,7 +36,10 @@ public class PushMessageSubscriber implements MessageListener{
         try {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             var notificationPayload = objectMapper.readValue(message.toString(), PushNotificationPayload.class);
-            String notificationEventId  = RandomStringUtils.randomAlphanumeric(12);
+            String notificationEventId  = (String) notificationPayload.getBody().get("eventId");
+            if(notificationEventId == null || notificationEventId ==""){
+                notificationEventId  = RandomStringUtils.randomAlphanumeric(12);
+            }
             notificationPayload.setEventId(notificationEventId);
             notificationPayload.getBody().put("type",notificationPayload.getType());
             notificationPayload.getBody().put("message",notificationPayload.getMessage());

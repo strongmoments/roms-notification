@@ -29,31 +29,37 @@ public class MobileNotificationSerfice implements MobileNotification {
 
             ArrayList<String>  deviceTokenArray = new ArrayList<String>();
             deviceTokenArray = (ArrayList<String>) event.getBody().get("devices");
+            log.info("notification device token {}", deviceTokenArray);
+            if(!deviceTokenArray.isEmpty()){
 
-            RestTemplate restTemplate = new RestTemplate();
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.set("Authorization", "key=" + androidFcmKey);
-            httpHeaders.set("Content-Type", "application/json");
-            Map<String, Object> msg = new HashMap<>();
-            Map<String, Object> json = new HashMap<>();
-
-
-
-            msg.put("title", event.getMessage());
-            msg.put("body", event.getBody());
-            msg.put("notificationType", event.getType());
-            msg.put("eventId", eventId);
-
-            json.put("data", msg);
-            json.put("registration_ids", deviceTokenArray);
+                RestTemplate restTemplate = new RestTemplate();
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.set("Authorization", "key=" + androidFcmKey);
+                httpHeaders.set("Content-Type", "application/json");
+                Map<String, Object> msg = new HashMap<>();
+                Map<String, Object> json = new HashMap<>();
 
 
-            ObjectMapper obj = new ObjectMapper();
-            String s= obj.writeValueAsString(json);
 
-            HttpEntity<String > httpEntity = new HttpEntity<String>(s,httpHeaders);
-            String response = restTemplate.postForObject(androidFcmUrl,httpEntity,String.class);
-            System.out.println(response);
+                msg.put("title", event.getMessage());
+                msg.put("body", event.getBody());
+                msg.put("notificationType", event.getType());
+                msg.put("eventId", eventId);
+
+                json.put("data", msg);
+                json.put("registration_ids", deviceTokenArray);
+
+
+                ObjectMapper obj = new ObjectMapper();
+                String s= obj.writeValueAsString(json);
+
+                HttpEntity<String > httpEntity = new HttpEntity<String>(s,httpHeaders);
+                String response = restTemplate.postForObject(androidFcmUrl,httpEntity,String.class);
+            }else{
+
+            }
+
+            //
         } catch (Exception e) {
             e.printStackTrace();
         }
