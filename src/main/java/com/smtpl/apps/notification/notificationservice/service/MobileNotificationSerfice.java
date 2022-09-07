@@ -29,6 +29,7 @@ public class MobileNotificationSerfice implements MobileNotification {
 
             ArrayList<String>  deviceTokenArray = new ArrayList<String>();
             deviceTokenArray = (ArrayList<String>) event.getBody().get("devices");
+           // deviceTokenArray.add("cLVFviTYR4ywKyMdoverRX:APA91bE--LlOwTFWfT8UaRFWXNqWGm6T5KAU9uxToQK16NsH4AquUhD7ttmd8RlrL0ptq0Tca7i37KzrakDDXXgW8DBkv5RJ13tRX6cC7Y9A6otf2_AJorI5W7ehQsj2Bc8Ezg4t92DJ");
             log.info("notification device token {}", deviceTokenArray);
             if(!deviceTokenArray.isEmpty()){
 
@@ -47,7 +48,8 @@ public class MobileNotificationSerfice implements MobileNotification {
                 msg.put("eventId", eventId);
 
                 json.put("data", msg);
-                json.put("registration_ids", deviceTokenArray);
+               // json.put("to",deviceTokenArray.get(0));
+               json.put("registration_ids", deviceTokenArray);
 
 
                 ObjectMapper obj = new ObjectMapper();
@@ -55,6 +57,7 @@ public class MobileNotificationSerfice implements MobileNotification {
 
                 HttpEntity<String > httpEntity = new HttpEntity<String>(s,httpHeaders);
                 String response = restTemplate.postForObject(androidFcmUrl,httpEntity,String.class);
+                log.info(response);
             }else{
 
             }
