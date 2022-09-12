@@ -45,10 +45,10 @@ public class PushMessageSubscriber implements MessageListener{
             notificationPayload.getBody().put("message",notificationPayload.getMessage());
 //            List<Object> alldevice = (List<Object>) notificationPayload.getBody().get("devices");
 
-            notificationService.sendNotification(notificationPayload.getUsername(),notificationPayload, notificationEventId);
-
-            mobileNotification.sendNotification(notificationPayload.getUsername(),notificationPayload, notificationEventId);
             notificationModelService.save(notificationPayload.getUsername(),notificationPayload, notificationEventId);
+            notificationService.sendNotification(notificationPayload.getUsername(),notificationPayload, notificationEventId);
+            mobileNotification.sendNotification(notificationPayload.getUsername(),notificationPayload, notificationEventId);
+            
 
         } catch (JsonProcessingException e) {
             log.error("unable to deserialize message ", e);
