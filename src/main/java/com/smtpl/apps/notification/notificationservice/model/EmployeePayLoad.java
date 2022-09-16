@@ -15,6 +15,7 @@ public class EmployeePayLoad implements Serializable {
     String lastName;
     String email;
     String phone;
+    String appliedOn;
     String orgId;
     int status;
 }
