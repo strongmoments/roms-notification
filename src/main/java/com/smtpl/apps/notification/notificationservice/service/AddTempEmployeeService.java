@@ -7,6 +7,8 @@ public interface AddTempEmployeeService {
 
     public String save(EmployeePayLoad employeePayLoad);
 
+    public String update(EmployeePayLoad employeePayLoad);
+
     public void delete(EmployeePayLoad employeePayLoad);
 
     public String load(EmployeePayLoad employeePayLoad) throws JsonProcessingException;

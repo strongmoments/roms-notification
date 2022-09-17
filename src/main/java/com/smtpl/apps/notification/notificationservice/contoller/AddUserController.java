@@ -28,6 +28,13 @@ public class AddUserController {
         log.info("status {}", response);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @PostMapping("/updateUser")
+    public ResponseEntity<?> updateUser(@RequestBody EmployeePayLoad request) throws JsonProcessingException {
+        log.info("updating user  {}", request.getEmail());
+        String response = addTempEmployeeService.update(request);
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
     @PostMapping("/loadUser")
     public ResponseEntity<?> loadUser(@RequestBody EmployeePayLoad request) throws JsonProcessingException {
