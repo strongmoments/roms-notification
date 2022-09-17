@@ -51,11 +51,15 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
         if(obj == null){
             return "user_not_found";
         }else {
-            if(employeePayLoad.getEmail().equalsIgnoreCase((String) obj.get(employeePayLoad.getEmail()))){
                 EmployeePayLoad payLoad =  (EmployeePayLoad) obj.get(employeePayLoad.getEmail());
-                payLoad.setStatus(employeePayLoad.getStatus());
-                obj.put(employeePayLoad.getEmail(),payLoad);
-            }
+                if(payLoad.getEmail().equalsIgnoreCase(employeePayLoad.getEmail())){
+                    payLoad.setStatus(employeePayLoad.getStatus());
+                    obj.put(employeePayLoad.getEmail(),payLoad);
+                }else{
+                    return "user_not_found";
+                }
+
+
         }
 
         hashOperations.put(hashReference, employeePayLoad.getOrgId(),obj);
