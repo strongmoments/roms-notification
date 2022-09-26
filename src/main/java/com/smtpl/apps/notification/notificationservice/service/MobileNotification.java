@@ -6,4 +6,7 @@ import org.springframework.stereotype.Service;
 
 public interface MobileNotification {
     public void sendNotification(String userId, PushNotificationPayload event,String eventId);
+
+    public String sendsms( PushNotificationPayload event);
+
 }

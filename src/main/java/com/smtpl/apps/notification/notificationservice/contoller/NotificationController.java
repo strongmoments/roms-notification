@@ -3,6 +3,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.smtpl.apps.notification.notificationservice.payload.PushNotificationPayload;
 import com.smtpl.apps.notification.notificationservice.channels.PushMessagePublisher;
 import com.smtpl.apps.notification.notificationservice.service.EmitterService2;
+import com.smtpl.apps.notification.notificationservice.service.MobileNotification;
 import com.smtpl.apps.notification.notificationservice.service.NotificationModelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class NotificationController {
     @Autowired
     private NotificationModelService notificationModelService;
 
+    @Autowired
+    private MobileNotification mobileNotification;
+
     @GetMapping("/subscription/{userId}")
     public SseEmitter subsribe(@PathVariable(value ="userId") String memberId) {
         log.info("subscribed member with id {}", memberId);
@@ -37,6 +41,12 @@ public class NotificationController {
     public ResponseEntity<?> send(@RequestBody PushNotificationPayload request) {
         pushMessagePublisher.publish(request);
         return ResponseEntity.ok().body("message pushed to user " + request.getUsername());
+    }
+
+    @PostMapping("/sendsms")
+    public ResponseEntity<?> sendsms(@RequestBody PushNotificationPayload request) {
+        String response  = mobileNotification.sendsms(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/loadNotification")

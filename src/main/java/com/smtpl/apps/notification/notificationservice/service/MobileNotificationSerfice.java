@@ -2,8 +2,13 @@ package com.smtpl.apps.notification.notificationservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smtpl.apps.notification.notificationservice.payload.PushNotificationPayload;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,9 +21,20 @@ import java.util.List;
 import java.util.Map;
 @Service
 @Primary
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class MobileNotificationSerfice implements MobileNotification {
+
+    //@Value("")
+    @Value("${twilio.account_sid}")
+    String ACCOUNT_SID;
+
+   // @Value("twilio.auth_token")
+   @Value("${twilio.auth_token}")
+    String AUTH_TOKEN;
+
+    @Value("${twilio.message_service_sid}")
+    String MESSAGE_SERVICE_SID;
 
     @Override
     public void sendNotification(String userId, PushNotificationPayload event, String eventId) {
@@ -66,6 +82,25 @@ public class MobileNotificationSerfice implements MobileNotification {
             //
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public String sendsms(PushNotificationPayload event) {
+        try{
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                            new com.twilio.type.PhoneNumber(event.getUsername()),
+                            MESSAGE_SERVICE_SID,
+                            event.getMessage())
+                    .create();
+            log.info("SMS-SUCCESS "+message.getSid());
+            log.info("SMS-detail "+message);
+        return  message.getSid();
+        }catch (Exception e){
+            log.info("SMS-ERROR "+e.getMessage());
+            return "fail";
         }
 
     }
