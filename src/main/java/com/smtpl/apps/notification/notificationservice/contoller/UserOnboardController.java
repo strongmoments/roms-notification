@@ -32,4 +32,10 @@ public class UserOnboardController {
         String response = onboardingService.loadOnboardedStatus(id, "personal");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/allOnboardingStatus")
+    public ResponseEntity<?> allOnboardingStatus() throws JsonProcessingException {
+        String response = onboardingService.getAllEmployeeOnboardingStatus();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

@@ -8,4 +8,6 @@ public interface OnboardingService {
      public String onboardPersonalDetails(EmployeePersonalDetails employeePersonalDetails,String onboardingType);
 
      public String loadOnboardedStatus(String userid,String onboardingType) throws JsonProcessingException;
+
+     public String getAllEmployeeOnboardingStatus() throws JsonProcessingException;
 }
