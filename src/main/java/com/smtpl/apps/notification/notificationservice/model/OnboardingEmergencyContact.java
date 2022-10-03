@@ -12,6 +12,7 @@ public class OnboardingEmergencyContact implements Serializable {
 
     private String id;
     private String step;
+    private String relationship;
     private String completionProgress;
     public String firstName;
     public String lastName;
