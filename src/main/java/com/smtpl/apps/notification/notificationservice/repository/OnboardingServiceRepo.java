@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smtpl.apps.notification.notificationservice.model.EmployeePayLoad;
 import com.smtpl.apps.notification.notificationservice.model.EmployeePersonalDetails;
+import com.smtpl.apps.notification.notificationservice.model.OnboardingEmergencyContact;
 import com.smtpl.apps.notification.notificationservice.service.OnboardingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,21 @@ public class OnboardingServiceRepo implements OnboardingService {
             return "success";
 
         }
+
+    @Override
+    public String onboardPersonalDetails(OnboardingEmergencyContact employeePersonalDetails, String onboardingType) {
+        Map<String,Object> obj = new HashMap<>();
+        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
+            Map<String,Object> startDateEndDate = new HashMap<>();
+            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
+            startDateEndDate.put("endDate", "");
+            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
+        }
+        obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        obj.put(onboardingType,employeePersonalDetails);
+        hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
+        return "success";
+    }
 
     @Override
     public String loadOnboardedStatus(String userid, String onboardingType) throws JsonProcessingException {
