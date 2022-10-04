@@ -15,6 +15,7 @@ public class OnboardingTFN implements Serializable {
     private boolean claimTaxfreeThreshold;
     private boolean haveanyDebt;
     private boolean tncAcceptance;
-
+    private String step;
+    private String completionProgress;
 
 }

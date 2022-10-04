@@ -14,4 +14,6 @@ public class OnbardingBankDetails implements Serializable {
     private Integer payslipByEmail;
     private BankDetailsInput defaultBank;
     private BankDetailsInput secondaryBank;
+    private String step;
+    private String completionProgress;
 }
