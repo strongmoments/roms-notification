@@ -1,10 +1,7 @@
 package com.smtpl.apps.notification.notificationservice.contoller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.smtpl.apps.notification.notificationservice.model.EmployeePayLoad;
-import com.smtpl.apps.notification.notificationservice.model.EmployeePersonalDetails;
-import com.smtpl.apps.notification.notificationservice.model.OnboardingEmergencyContact;
-import com.smtpl.apps.notification.notificationservice.model.OnboardingLicence;
+import com.smtpl.apps.notification.notificationservice.model.*;
 import com.smtpl.apps.notification.notificationservice.service.OnboardingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +42,14 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/banking")
+    public ResponseEntity<?> save(@RequestBody OnbardingBankDetails request) throws JsonProcessingException {
+        //log.info("adding user  {}", request.getEmail());
+        String response = onboardingService.onboardBanking(request, "banking");
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
 
 
@@ -63,6 +68,12 @@ public class UserOnboardController {
     @GetMapping("/emergency/{userId}")
     public ResponseEntity<?> loademergencycontact(@PathVariable(value ="userId") String id) throws JsonProcessingException {
         String response = onboardingService.loadOnboardedStatus(id, "emergency");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/banking/{userId}")
+    public ResponseEntity<?> loadbanking(@PathVariable(value ="userId") String id) throws JsonProcessingException {
+        String response = onboardingService.loadOnboardedStatus(id, "banking");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
