@@ -87,6 +87,21 @@ public class OnboardingServiceRepo implements OnboardingService {
     }
 
     @Override
+    public String onboardTFN(OnboardingTFN employeePersonalDetails, String onboardingType) {
+        Map<String,Object> obj = new HashMap<>();
+        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
+            Map<String,Object> startDateEndDate = new HashMap<>();
+            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
+            startDateEndDate.put("endDate", "");
+            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
+        }
+        obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        obj.put(onboardingType,employeePersonalDetails);
+        hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
+        return "success";
+    }
+
+    @Override
     public String loadOnboardedStatus(String userid, String onboardingType) throws JsonProcessingException {
         if(null != hashOperations.get(hashReference,userid)){
             Map<String, Object>  data = (Map<String, Object>)hashOperations.get(hashReference,userid);

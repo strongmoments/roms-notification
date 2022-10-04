@@ -1,10 +1,7 @@
 package com.smtpl.apps.notification.notificationservice.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.smtpl.apps.notification.notificationservice.model.EmployeePersonalDetails;
-import com.smtpl.apps.notification.notificationservice.model.OnbardingBankDetails;
-import com.smtpl.apps.notification.notificationservice.model.OnboardingEmergencyContact;
-import com.smtpl.apps.notification.notificationservice.model.OnboardingLicence;
+import com.smtpl.apps.notification.notificationservice.model.*;
 
 public interface OnboardingService {
 
@@ -14,6 +11,8 @@ public interface OnboardingService {
      public String onboardLicence(OnboardingLicence employeePersonalDetails, String onboardingType);
 
      public String onboardBanking(OnbardingBankDetails employeePersonalDetails, String onboardingType);
+
+     public String onboardTFN(OnboardingTFN employeePersonalDetails, String onboardingType);
 
 
      public String loadOnboardedStatus(String userid,String onboardingType) throws JsonProcessingException;

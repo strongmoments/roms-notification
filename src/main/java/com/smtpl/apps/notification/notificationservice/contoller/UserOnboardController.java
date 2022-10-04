@@ -50,6 +50,14 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/tfn")
+    public ResponseEntity<?> save(@RequestBody OnboardingTFN request) throws JsonProcessingException {
+        //log.info("adding user  {}", request.getEmail());
+        String response = onboardingService.onboardTFN(request, "tfn");
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
 
 
@@ -77,6 +85,11 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/tfn/{userId}")
+    public ResponseEntity<?> loadTFN(@PathVariable(value ="userId") String id) throws JsonProcessingException {
+        String response = onboardingService.loadOnboardedStatus(id, "tfn");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     @GetMapping("/allOnboardingStatus")
     public ResponseEntity<?> allOnboardingStatus() throws JsonProcessingException {
         String response = onboardingService.getAllEmployeeOnboardingStatus();
