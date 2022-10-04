@@ -58,6 +58,14 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/superannuation")
+    public ResponseEntity<?> save(@RequestBody OnboardingSuperannuation request) throws JsonProcessingException {
+        //log.info("adding user  {}", request.getEmail());
+        String response = onboardingService.onboardSupreannution(request, "superannuation");
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
 
 
@@ -88,6 +96,12 @@ public class UserOnboardController {
     @GetMapping("/tfn/{userId}")
     public ResponseEntity<?> loadTFN(@PathVariable(value ="userId") String id) throws JsonProcessingException {
         String response = onboardingService.loadOnboardedStatus(id, "tfn");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/superannuation/{userId}")
+    public ResponseEntity<?> loadsuperannuation(@PathVariable(value ="userId") String id) throws JsonProcessingException {
+        String response = onboardingService.loadOnboardedStatus(id, "superannuation");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @GetMapping("/allOnboardingStatus")

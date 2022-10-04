@@ -14,6 +14,8 @@ public interface OnboardingService {
 
      public String onboardTFN(OnboardingTFN employeePersonalDetails, String onboardingType);
 
+     public String onboardSupreannution(OnboardingSuperannuation employeePersonalDetails, String onboardingType);
+
 
      public String loadOnboardedStatus(String userid,String onboardingType) throws JsonProcessingException;
 
