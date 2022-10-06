@@ -66,6 +66,21 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/membership")
+    public ResponseEntity<?> save(@RequestBody OnboardingMembership request) throws JsonProcessingException {
+        //log.info("adding user  {}", request.getEmail());
+        String response = onboardingService.onboardMemberShip(request, "membership");
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/feedback")
+    public ResponseEntity<?> save(@RequestBody OnboardingFeedBack request) throws JsonProcessingException {
+        //log.info("adding user  {}", request.getEmail());
+        String response = onboardingService.onboardFeedBack(request, "feedback");
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
 
 
@@ -104,6 +119,19 @@ public class UserOnboardController {
         String response = onboardingService.loadOnboardedStatus(id, "superannuation");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/membership/{userId}")
+    public ResponseEntity<?> loadmembership(@PathVariable(value ="userId") String id) throws JsonProcessingException {
+        String response = onboardingService.loadOnboardedStatus(id, "membership");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/feedback/{userId}")
+    public ResponseEntity<?> loadfeedback(@PathVariable(value ="userId") String id) throws JsonProcessingException {
+        String response = onboardingService.loadOnboardedStatus(id, "feedback");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/allOnboardingStatus")
     public ResponseEntity<?> allOnboardingStatus() throws JsonProcessingException {
         String response = onboardingService.getAllEmployeeOnboardingStatus();

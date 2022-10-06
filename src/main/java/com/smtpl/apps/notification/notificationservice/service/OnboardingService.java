@@ -16,6 +16,10 @@ public interface OnboardingService {
 
      public String onboardSupreannution(OnboardingSuperannuation employeePersonalDetails, String onboardingType);
 
+     public String onboardMemberShip(OnboardingMembership employeePersonalDetails, String onboardingType);
+
+     public String onboardFeedBack(OnboardingFeedBack employeePersonalDetails, String onboardingType);
+
 
      public String loadOnboardedStatus(String userid,String onboardingType) throws JsonProcessingException;
 
