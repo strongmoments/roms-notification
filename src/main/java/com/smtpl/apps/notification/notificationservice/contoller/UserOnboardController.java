@@ -132,6 +132,13 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+
+    @GetMapping("/status/{userId}")
+    public ResponseEntity<?> getonboardStatus(@PathVariable(value ="userId") String id) throws JsonProcessingException {
+        String response = onboardingService.getOnboardStatus(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/allOnboardingStatus")
     public ResponseEntity<?> allOnboardingStatus() throws JsonProcessingException {
         String response = onboardingService.getAllEmployeeOnboardingStatus();

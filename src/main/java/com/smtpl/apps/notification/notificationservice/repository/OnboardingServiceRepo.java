@@ -169,6 +169,18 @@ public class OnboardingServiceRepo implements OnboardingService {
     }
 
     @Override
+    public String getOnboardStatus(String userid) throws JsonProcessingException {
+        Map<String, Object>  data  =  hashOperations.get(hashReference, userid);
+        ObjectMapper obj = new ObjectMapper();
+        if(data == null){
+            return  "";
+        }else {
+            return obj.writeValueAsString(data);
+        }
+
+    }
+
+    @Override
     public String getAllEmployeeOnboardingStatus() throws JsonProcessingException {
         ObjectMapper obj = new ObjectMapper();
         return obj.writeValueAsString(hashOperations.entries(hashReference));

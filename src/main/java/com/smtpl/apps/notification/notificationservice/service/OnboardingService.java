@@ -25,5 +25,7 @@ public interface OnboardingService {
 
      public String loadOnboardedStatus(String userid,String onboardingType) throws JsonProcessingException;
 
+     public String getOnboardStatus(String userid) throws JsonProcessingException;
+
      public String getAllEmployeeOnboardingStatus() throws JsonProcessingException;
 }
