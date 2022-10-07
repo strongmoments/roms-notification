@@ -20,6 +20,8 @@ public interface OnboardingService {
 
      public String onboardFeedBack(OnboardingFeedBack employeePersonalDetails, String onboardingType);
 
+     public String setRegistratinDate(String empId, String registratinDate);
+
 
      public String loadOnboardedStatus(String userid,String onboardingType) throws JsonProcessingException;
 

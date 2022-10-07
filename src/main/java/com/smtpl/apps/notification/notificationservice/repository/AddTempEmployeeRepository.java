@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smtpl.apps.notification.notificationservice.model.EmployeePayLoad;
 import com.smtpl.apps.notification.notificationservice.service.AddTempEmployeeService;
+import com.smtpl.apps.notification.notificationservice.service.OnboardingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +21,9 @@ import java.util.Map;
 public class AddTempEmployeeRepository implements AddTempEmployeeService {
 
     private final String hashReference= "addemployee";
+
+    @Autowired
+    private OnboardingService onboardingService;
 
     @Resource(name="redisTemplate2")          // 'redisTemplate' is defined as a Bean in AppConfig.java
     private HashOperations<String, String, Map<String, Object>> hashOperations;
@@ -56,6 +61,10 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
                    // payLoad.setStatus(employeePayLoad.getStatus());
                     employeePayLoad.setAppliedOn(payLoad.getAppliedOn());
                     obj.put(employeePayLoad.getEmail(),employeePayLoad);
+                    String registratinDate = employeePayLoad.getRegistrationDate();
+                    String empId = employeePayLoad.getId();
+                    onboardingService.setRegistratinDate(empId,registratinDate);
+
                 }else{
                     return "user_not_found";
                 }
@@ -83,4 +92,5 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
 
         return obj.writeValueAsString(mapObj);
     }
+
 }

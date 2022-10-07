@@ -70,7 +70,6 @@ public class OnboardingServiceRepo implements OnboardingService {
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
     }
-
     @Override
     public String onboardBanking(OnbardingBankDetails employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
@@ -138,12 +137,25 @@ public class OnboardingServiceRepo implements OnboardingService {
             Map<String,Object> startDateEndDate = new HashMap<>();
            // startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
             startDateEndDate.put("endDate", String.valueOf(Instant.now().toEpochMilli()));
+
             hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
         }
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
+    }
+
+    @Override
+    public String setRegistratinDate(String empId, String registratinDate) {
+       Map<String,Object> obj = new HashMap<>();
+        if(null == hashOperations.get(hashReference,empId)){
+            Map<String,Object> startDateEndDate = new HashMap<>();
+            // startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
+            startDateEndDate.put("registrationDate", registratinDate);
+            hashOperations.put(hashReference,empId ,startDateEndDate);
+        }
+        return  "";
     }
 
     @Override
