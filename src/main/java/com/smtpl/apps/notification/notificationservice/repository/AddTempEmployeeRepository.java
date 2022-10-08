@@ -63,7 +63,7 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
                     obj.put(employeePayLoad.getEmail(),employeePayLoad);
                     String registratinDate = employeePayLoad.getRegistrationDate();
                     String empId = employeePayLoad.getId();
-                    onboardingService.setRegistratinDate(empId,registratinDate);
+                    onboardingService.setRegistratinDate(empId,employeePayLoad);
 
                 }else{
                     return "user_not_found";

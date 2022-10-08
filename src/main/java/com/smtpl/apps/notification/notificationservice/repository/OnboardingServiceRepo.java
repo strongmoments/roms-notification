@@ -147,12 +147,17 @@ public class OnboardingServiceRepo implements OnboardingService {
     }
 
     @Override
-    public String setRegistratinDate(String empId, String registratinDate) {
+    public String setRegistratinDate(String empId, EmployeePayLoad employeePayLoad) {
        Map<String,Object> obj = new HashMap<>();
         if(null == hashOperations.get(hashReference,empId)){
             Map<String,Object> startDateEndDate = new HashMap<>();
             // startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("registrationDate", registratinDate);
+            startDateEndDate.put("registrationDate", employeePayLoad.getRegistrationDate());
+            startDateEndDate.put("firstName",employeePayLoad.getFirstName());
+            startDateEndDate.put("lastName",employeePayLoad.getLastName());
+            startDateEndDate.put("id",employeePayLoad.getId());
+            startDateEndDate.put("empNo",employeePayLoad.getEmployeeNo());
+
             hashOperations.put(hashReference,empId ,startDateEndDate);
         }
         return  "";
