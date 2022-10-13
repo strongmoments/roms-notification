@@ -20,6 +20,8 @@ public interface OnboardingService {
 
      public String onboardFeedBack(OnboardingFeedBack employeePersonalDetails, String onboardingType);
 
+     public String onboarComplete(EmployeePayLoad employeePersonalDetails, String onboardingType);
+
      public String setRegistratinDate(String empId, EmployeePayLoad employeePayLoad);
 
 

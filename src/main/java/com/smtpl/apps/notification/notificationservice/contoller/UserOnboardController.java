@@ -82,6 +82,14 @@ public class UserOnboardController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/complete")
+    public ResponseEntity<?> complete(@RequestBody EmployeePayLoad request) throws JsonProcessingException {
+        //log.info("adding user  {}", request.getEmail());
+        String response = onboardingService.onboarComplete(request, "complete");
+        log.info("status {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
 
     @GetMapping("/personal/{userId}")

@@ -28,13 +28,10 @@ public class OnboardingServiceRepo implements OnboardingService {
     public String onboardPersonalDetails(EmployeePersonalDetails employeePersonalDetails,String onboardingType) {
 
             Map<String,Object> obj = new HashMap<>();
-            if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-                Map<String,Object> startDateEndDate = new HashMap<>();
-                startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-                startDateEndDate.put("endDate", "");
-                hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-            }
             obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+            if(obj.get("startdDate") == null){
+                obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+            }
             obj.put(onboardingType,employeePersonalDetails);
             hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
             return "success";
@@ -44,13 +41,11 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardPersonalDetails(OnboardingEmergencyContact employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", "");
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
+
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
@@ -59,13 +54,11 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardLicence(OnboardingLicence employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", "");
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
+
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
@@ -73,13 +66,11 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardBanking(OnbardingBankDetails employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", "");
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
+
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
@@ -88,13 +79,11 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardTFN(OnboardingTFN employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", "");
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
+
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
@@ -103,13 +92,11 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardSupreannution(OnboardingSuperannuation employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", "");
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
+
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
@@ -118,13 +105,11 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardMemberShip(OnboardingMembership employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-            startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", "");
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
+
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
@@ -133,15 +118,29 @@ public class OnboardingServiceRepo implements OnboardingService {
     @Override
     public String onboardFeedBack(OnboardingFeedBack employeePersonalDetails, String onboardingType) {
         Map<String,Object> obj = new HashMap<>();
-        if(null == hashOperations.get(hashReference,employeePersonalDetails.getId())){
-            Map<String,Object> startDateEndDate = new HashMap<>();
-           // startDateEndDate.put("startdDate", String.valueOf(Instant.now().toEpochMilli()));
-            startDateEndDate.put("endDate", String.valueOf(Instant.now().toEpochMilli()));
 
-            hashOperations.put(hashReference,employeePersonalDetails.getId() ,startDateEndDate);
-        }
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
         obj.put(onboardingType,employeePersonalDetails);
+        hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
+        return "success";
+    }
+
+    @Override
+    public String onboarComplete(EmployeePayLoad employeePersonalDetails, String onboardingType) {
+        Map<String,Object> obj = new HashMap<>();
+
+        obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
+        if(obj.get("startdDate") == null){
+            obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
+        if(obj.get("endDate") == null){
+            obj.put("endDate",String.valueOf(Instant.now().toEpochMilli()));
+        }
+
+      //  obj.put(onboardingType,employeePersonalDetails);
         hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
         return "success";
     }
