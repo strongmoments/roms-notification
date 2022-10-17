@@ -18,5 +18,6 @@ public class EmployeePayLoad implements Serializable {
     String phone;
     String appliedOn;
     String orgId;
+    public boolean onboardingRequired;
     int status;
 }

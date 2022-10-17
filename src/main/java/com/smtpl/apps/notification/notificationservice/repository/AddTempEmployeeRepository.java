@@ -57,7 +57,7 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
             return "user_not_found";
         }else {
                 EmployeePayLoad payLoad =  (EmployeePayLoad) obj.get(employeePayLoad.getEmail());
-                if(payLoad.getEmail().equalsIgnoreCase(employeePayLoad.getEmail())){
+                if(employeePayLoad.isOnboardingRequired() &&  payLoad.getEmail().equalsIgnoreCase(employeePayLoad.getEmail())){
                    // payLoad.setStatus(employeePayLoad.getStatus());
                     employeePayLoad.setAppliedOn(payLoad.getAppliedOn());
                     obj.put(employeePayLoad.getEmail(),employeePayLoad);

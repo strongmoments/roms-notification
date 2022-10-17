@@ -31,7 +31,12 @@ public class OnboardingServiceRepo implements OnboardingService {
             obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
             if(obj.get("startdDate") == null){
                 obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
+
+
             }
+                obj.put("firstName",employeePersonalDetails.getFirstName());
+                obj.put("lastName",employeePersonalDetails.getLastName());
+                obj.put("id",employeePersonalDetails.getId());
             obj.put(onboardingType,employeePersonalDetails);
             hashOperations.put(hashReference,employeePersonalDetails.getId() ,obj);
             return "success";
