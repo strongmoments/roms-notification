@@ -161,9 +161,6 @@ public class OnboardingServiceRepo implements OnboardingService {
         Map<String,Object> obj = new HashMap<>();
 
         obj = hashOperations.get(hashReference,employeePersonalDetails.getId());
-        if(obj== null){
-            obj = new HashMap<>();
-        }
         if(obj.get("startdDate") == null){
             obj.put("startdDate",String.valueOf(Instant.now().toEpochMilli()));
         }

@@ -37,7 +37,14 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
         if(obj == null){
             obj = new HashMap<>();
         }else {
-            if(null != obj.get(employeePayLoad.getEmail())){
+            boolean found = false;
+            for(String key : obj.keySet()){
+                if(key.equalsIgnoreCase(employeePayLoad.getEmail())){
+                    found = true;
+                    break;
+                }
+            }
+            if(found){
                 return "already_requested";
             }
         }
