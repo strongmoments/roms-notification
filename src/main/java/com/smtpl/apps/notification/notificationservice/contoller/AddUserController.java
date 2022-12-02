@@ -36,6 +36,14 @@ public class AddUserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PostMapping("/deleteUser")
+    public ResponseEntity<?> deleteUser(@RequestBody EmployeePayLoad request) throws JsonProcessingException {
+        log.info("updating user  {}", request.getEmail());
+         addTempEmployeeService.delete(request);
+        //log.info("status {}", response);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
     @PostMapping("/loadUser")
     public ResponseEntity<?> loadUser(@RequestBody EmployeePayLoad request) throws JsonProcessingException {
         log.info("loading users {}", request.getOrgId());

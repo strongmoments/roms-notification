@@ -85,7 +85,15 @@ public class AddTempEmployeeRepository implements AddTempEmployeeService {
 
     @Override
     public void delete(EmployeePayLoad employeePayLoad) {
-
+        Map<String,Object> obj = new HashMap<>();
+        obj =  hashOperations.get(hashReference,employeePayLoad.getOrgId());
+        if(obj != null){
+            EmployeePayLoad payLoad =  (EmployeePayLoad) obj.get(employeePayLoad.getEmail());
+            if(payLoad.getEmail().equalsIgnoreCase(employeePayLoad.getEmail())){
+                obj.remove(employeePayLoad.getEmail());
+            }
+        }
+        hashOperations.put(hashReference, employeePayLoad.getOrgId(),obj);
     }
 
     @Override
