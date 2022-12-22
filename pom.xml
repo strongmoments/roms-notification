@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.smtpl.apps.notification</groupId>
     <artifactId>notificationservice</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>notificationservice</name>
     <description>notificationservice</description>
     <properties>
